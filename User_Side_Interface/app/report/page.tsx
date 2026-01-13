@@ -669,16 +669,16 @@ export default function ReportIssuePage() {
       // Default to "General" if AI fails, so the user never gets stuck.
       let assignedDepartment = "General Administration"; 
 
-      try {
-        // We send the Description + Issue Type to the AI for better accuracy
-        const departmentResponse = await fetch(`${API_BASE_URL}/api/assign-department`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ 
-            description: description, 
-            category: issueType 
-          }),
-        });
+      try{
+        const tagsToSend = displayTags && displayTags.length > 0 ? displayTags : `General Issue: ${description}`;
+
+        const deptResponse = await fetch(`${API_BASE_URL}/api/assign-department`,{
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tags: tagsToSend // Now it never sends empty data
+        }),
+       });
 
         if (departmentResponse.ok) {
           const departmentData = await departmentResponse.json();
