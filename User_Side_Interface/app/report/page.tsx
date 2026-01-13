@@ -676,7 +676,9 @@ export default function ReportIssuePage() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            tags: tagsToSend // Now it never sends empty data
+            description: description, 
+            category: issueType,
+            tags: displayTags
         }),
        });
 
