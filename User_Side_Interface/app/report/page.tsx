@@ -530,7 +530,7 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 
 // Add a base URL for your local Flask API
 // const API_BASE_URL = "http://127.0.0.1:5000";
-const API_BASE_URL = "";
+const API_BASE_URL = "https://civic-sathi-vi5b.onrender.com";
 
 export default function ReportIssuePage() {
     const [isSubmitted, setIsSubmitted] = useState(false)
