@@ -138,8 +138,8 @@ def generate_tags_from_description(description: str) -> str:
         return response.text.strip()
     except Exception as e:
         # This will print the actual error message to your console
-        logging.error(f"An error occurred during tag generation: {e}")
-        return f"An error occurred during tag generation: {e}"
+        print(f"ERROR GENERATING TAGS: {e}", flush=True) 
+        return jsonify({'tags': 'error', 'department': 'Review Needed'}), 500
 
 def assign_department_from_tags(tags_string: str) -> str:
     """Assigns a department based on a string of tags. This is the core classification function."""
