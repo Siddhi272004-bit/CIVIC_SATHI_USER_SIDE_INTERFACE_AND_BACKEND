@@ -1059,10 +1059,10 @@ export default function ReportIssuePage() {
       let assignedDepartment = "General Administration"; 
       try {
         const tagsToSend = displayTags && displayTags.length > 0 ? displayTags : `General Issue: ${description}`;
-        const deptResponse = await fetch(`${API_BASE_URL}/api/assign-department`, {
+        const deptResponse = await fetch(`/api/assign-department`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ description, category: issueType, tags: tagsToSend }),
+          body: JSON.stringify({tags: tagsToSend }),
         });
         if (deptResponse.ok) {
           const data = await deptResponse.json();
