@@ -915,6 +915,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ArrowLeft, Camera, MapPin, Upload, Mic, CheckCircle } from "lucide-react"
 import Link from "next/link"
 import { throttledFetch } from "@/lib/throttle"
+import { useAuth } from "@/lib/AuthContext";
 
 // firebase imports
 import { db } from "@/lib/firebaseconfig"
@@ -945,6 +946,7 @@ export default function ReportIssuePage() {
   const recognitionRef = useRef<any>(null)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const [isRecording, setIsRecording] = useState(false)
+  const { user } = useAuth();
 
   // --- Helper Functions (Debounce, etc.) ---
   const debounce = (func: Function, delay: number) => {
@@ -1045,6 +1047,10 @@ export default function ReportIssuePage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!user) {
+      alert("You must be logged in to submit a report.");
+      return;
+    }
     if (!issueType || !location || !description) {
       alert("Please fill in all required fields.");
       return;
@@ -1149,6 +1155,8 @@ export default function ReportIssuePage() {
         assignedDepartment: assignedDepartment,
         status: "pending",
         createdAt: serverTimestamp(),
+        userId: user.uid,
+        userEmail: user.email
       });
 
       console.log("Report submitted successfully ✅");
