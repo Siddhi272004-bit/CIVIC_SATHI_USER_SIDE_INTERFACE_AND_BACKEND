@@ -947,6 +947,7 @@ export default function ReportIssuePage() {
   const recognitionRef = useRef<any>(null)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const [isRecording, setIsRecording] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const { user } = useAuth();
 
   // --- Helper Functions (Debounce, etc.) ---
@@ -1278,7 +1279,7 @@ export default function ReportIssuePage() {
             </div>
 
             {/* Image Upload */}
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <Label>Photo Evidence</Label>
               <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-md p-6 hover:bg-muted/50 transition-colors">
                 {selectedImage ? (
@@ -1324,7 +1325,29 @@ export default function ReportIssuePage() {
                   </div>
                 )}
               </div>
-            </div>
+            </div> */}
+            {/* --- NEW IMAGE UPLOAD SECTION (Camera Fixed) --- */}
+<div className="space-y-2">
+  <Label>Photo Evidence</Label>
+  
+  {/* 1. I added this hidden input that actually does the work */}
+  <input 
+    type="file" 
+    accept="image/*" 
+    capture="environment" 
+    className="hidden" 
+    ref={fileInputRef} 
+    onChange={handleImageUpload} 
+  />
+
+  {/* 2. I added this Div that triggers the input when clicked */}
+  <div 
+    onClick={() => fileInputRef.current?.click()} 
+    className="flex flex-col items-center justify-center border-2 ... cursor-pointer"
+  >
+    {/* ... logic to show Image Preview OR Camera Icon ... */}
+  </div>
+</div>
 
             {/* Audio Recording */}
             <div className="space-y-2">
