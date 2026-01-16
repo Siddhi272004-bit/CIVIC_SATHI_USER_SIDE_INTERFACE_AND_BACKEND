@@ -1279,7 +1279,7 @@ export default function ReportIssuePage() {
             </div>
 
             {/* Image Upload */}
-            {/* <div className="space-y-2">
+             { <div className="space-y-2">
               <Label>Photo Evidence</Label>
               <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-md p-6 hover:bg-muted/50 transition-colors">
                 {selectedImage ? (
@@ -1325,50 +1325,10 @@ export default function ReportIssuePage() {
                   </div>
                 )}
               </div>
-            </div> */}
-            {/* --- NEW IMAGE UPLOAD SECTION (Camera Fixed) --- */}
+            </div> } 
+            
 
-              {/* --- NEW IMAGE UPLOAD SECTION --- */}
-            <div className="space-y-2">
-              <Label>Photo Evidence</Label>
               
-              {/* 1. The Hidden Worker (This does the actual upload) */}
-              <input 
-                type="file" 
-                accept="image/*" 
-                capture="environment" 
-                className="hidden" 
-                ref={fileInputRef} 
-                onChange={handleImageUpload} 
-              />
-
-              {/* 2. The Visible Trigger (This is what you click) */}
-              <div 
-                onClick={() => fileInputRef.current?.click()} 
-                className="flex flex-col items-center justify-center border-2 border-dashed rounded-md p-6 hover:bg-muted/50 transition-colors cursor-pointer"
-              >
-                {selectedImage ? (
-                  <div className="relative w-full flex justify-center">
-                    <img 
-                      src={selectedImage} 
-                      alt="Preview" 
-                      className="max-h-[300px] object-contain rounded-md" 
-                    />
-                    <div className="absolute bottom-2 bg-black/50 text-white text-xs px-2 py-1 rounded">
-                        Tap to change
-                    </div>
-                  </div>
-                ) : (
-                  <div className="text-center space-y-2">
-                    <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                        <Camera className="h-6 w-6 text-blue-600" />
-                    </div>
-                    <p className="text-sm font-medium">Tap here to Take Photo</p>
-                    <p className="text-xs text-muted-foreground">Supports JPG, PNG</p>
-                  </div>
-                )}
-              </div>
-            </div>
             {/* Audio Recording */}
             <div className="space-y-2">
                <Label>Audio Note (Optional)</Label>
