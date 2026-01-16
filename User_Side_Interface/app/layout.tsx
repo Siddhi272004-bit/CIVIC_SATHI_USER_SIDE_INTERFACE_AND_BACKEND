@@ -67,20 +67,6 @@ export const metadata: Metadata = {
   description: 'Community Issue Reporting App',
   generator: 'v0.app',
 }
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider>
-           <StatusNotification />  {/* <--- Add this component here */}
-           {children}
-           <Toaster />
-        </AuthProvider>
-      </body>
-    </html>
-  );
-      
-}
 export default function RootLayout({
   children,
 }: Readonly<{
