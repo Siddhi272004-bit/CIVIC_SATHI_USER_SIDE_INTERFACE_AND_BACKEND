@@ -1073,7 +1073,7 @@ export default function ReportIssuePage() {
       // ... inside handleSubmit ...
 
       // 1. Department Assignment
-      let assignedDepartment = "General Administration"; 
+      let assignedDepartment = ""; 
       
       // try {
       //   // Fallback: If tags are empty, use the description so the AI still has something to work with
@@ -1138,9 +1138,11 @@ export default function ReportIssuePage() {
                    assignedDepartment = data;
                }
                console.log("🎯 Set Department to:", assignedDepartment);
+             } else {
+                console.error("❌ Server Error:", deptResponse.status);
              }
            } catch (deptError) {
-             console.error("💥 CRITICAL ERROR in Department Logic:", deptError);
+             console.error("💥 Network ERROR in Department Logic:", deptError);
            }
       }
       
