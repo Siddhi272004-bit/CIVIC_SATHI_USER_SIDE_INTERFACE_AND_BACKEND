@@ -71,7 +71,7 @@ export async function POST(request: Request) {
     // If your teammate's Python code returns "tags", we map it here safely:
     const finalTags = data.tag;
     const conf=data.confidence;
-    console.log(conf);
+    console.log(data.department);
     return NextResponse.json({ generated_tags: finalTags });
 
   } catch (error) {
