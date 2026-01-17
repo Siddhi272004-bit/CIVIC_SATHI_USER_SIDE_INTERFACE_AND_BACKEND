@@ -34,7 +34,6 @@
 // }
 
 // app/api/upload/route.ts
-
 import { put } from '@vercel/blob';
 import { NextResponse } from 'next/server';
 import sharp from 'sharp';
@@ -61,8 +60,6 @@ export async function POST(request: Request): Promise<NextResponse> {
         const inputBuffer = Buffer.from(arrayBuffer);
 
         // 2. Read the Font File (Roboto-Regular.ttf)
-        // We load it from the 'public' folder and convert it to Base64
-        // so we can embed it directly into the SVG. This fixes the "Boxes" issue.
         const fontPath = path.join(process.cwd(), 'public', 'Roboto-Regular.ttf');
         let fontBase64 = '';
         try {
@@ -70,7 +67,6 @@ export async function POST(request: Request): Promise<NextResponse> {
             fontBase64 = fontBuffer.toString('base64');
         } catch (fontErr) {
             console.error("Could not load font file:", fontErr);
-            // If font fails, we just continue (but you might see boxes again)
         }
 
         // 3. Get Image Metadata
@@ -78,35 +74,42 @@ export async function POST(request: Request): Promise<NextResponse> {
         const width = metadata.width || 800;
         const resizeWidth = width > 1000 ? 1000 : width;
 
-        // 4. Generate Timestamp
+        // 4. Generate Timestamp (Date & Time)
         const timestamp = new Date().toLocaleString('en-IN', { 
             timeZone: 'Asia/Kolkata',
-            dateStyle: 'medium',
-            timeStyle: 'short'
+            dateStyle: 'medium', // e.g., Jan 17, 2026
+            timeStyle: 'short'   // e.g., 2:30 PM
         });
 
-        const textObj = `VERIFIED: ${timestamp} | GPS: ${location}`;
+        // 5. Create SVG with TWO LINES of Text
+        // Line 1: GPS Coordinates
+        // Line 2: Date and Time
+        const line1 = `GPS: ${location}`;
+        const line2 = `DATE: ${timestamp}`;
         
-        // 5. Create SVG with EMBEDDED FONT
         const svgOverlay = `
-        <svg width="${resizeWidth}" height="50">
+        <svg width="${resizeWidth}" height="60">
             <defs>
                 <style>
                     @font-face {
                         font-family: 'MyCustomFont';
                         src: url('data:font/ttf;base64,${fontBase64}') format('truetype');
                     }
-                    .bg { fill: rgba(0, 0, 0, 0.6); }
+                    .bg { fill: rgba(0, 0, 0, 0.7); }
                     .text { 
                         fill: #fff; 
-                        font-size: 18px; 
                         font-family: 'MyCustomFont', sans-serif; 
                         font-weight: bold; 
                     }
+                    .gps { font-size: 19px; }
+                    .date { font-size: 14px; fill: #ddd; }
                 </style>
             </defs>
-            <rect x="0" y="0" width="${resizeWidth}" height="50" class="bg" />
-            <text x="10" y="32" class="text">${textObj}</text>
+            <rect x="0" y="0" width="${resizeWidth}" height="60" class="bg" />
+            
+            <text x="15" y="28" class="text gps">${line1}</text>
+            
+            <text x="15" y="50" class="text date">${line2}</text>
         </svg>
         `;
 
