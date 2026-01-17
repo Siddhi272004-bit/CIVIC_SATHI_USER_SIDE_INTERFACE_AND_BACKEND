@@ -1252,7 +1252,7 @@ export default function ReportIssuePage() {
         <CardHeader>
           <CardTitle className="text-2xl font-bold">Report an Issue</CardTitle>
           <CardDescription>
-            Help us improve our city by reporting infrastructure or civic issues.
+            Help us improve our city by reporting infrastructure or civic issues and gain rewards.
           </CardDescription>
         </CardHeader>
         <CardContent>
