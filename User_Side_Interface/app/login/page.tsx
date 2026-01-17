@@ -2,8 +2,7 @@
 import { useAuth } from "@/lib/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button"; // Assuming you have shadcn button
-
+import { Button } from "@/components/ui/button";
 export default function LoginPage() {
   const { user, googleSignIn } = useAuth();
   const router = useRouter();
@@ -15,8 +14,6 @@ export default function LoginPage() {
       console.error("Login failed", error);
     }
   };
-
-  // Redirect to home if already logged in
   useEffect(() => {
     if (user) {
       router.push("/");
