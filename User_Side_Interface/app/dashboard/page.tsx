@@ -261,7 +261,7 @@ const CommunityDashboard: React.FC = () => {
       description: "Report your first 10 issues", 
       threshold: 10, 
       achieved: true,
-      iconColor: "text-[#2596be]" // Updated Theme Color
+      iconColor: "text-[#00648e]" // Updated Theme Color
     },
     { 
       id: 2, 
@@ -269,7 +269,7 @@ const CommunityDashboard: React.FC = () => {
       description: "Earn 1000 Coins", 
       threshold: 1000, 
       achieved: true,
-      iconColor: "text-[#2596be]" // Updated Theme Color
+      iconColor: "text-[#00648e]" // Updated Theme Color
     },
     { 
       id: 3, 
@@ -296,7 +296,7 @@ const CommunityDashboard: React.FC = () => {
     <div className="min-h-screen bg-gray-50 font-sans text-slate-800">
       
       {/* --- HEADER SECTION (Matches Theme) --- */}
-      <div className="bg-[#2596be] p-4 text-white shadow-md">
+      <div className="bg-[#00648e] p-4 text-white shadow-md">
         <div className="max-w-md mx-auto flex justify-between items-center">
           <div>
             <h1 className="text-xl font-bold">CivicSaathi</h1>
@@ -334,7 +334,7 @@ const CommunityDashboard: React.FC = () => {
             </div>
             <div className="text-right">
               {/* Level Badge using slightly lighter version of theme for background */}
-              <span className="bg-[#e4f4f9] text-[#2596be] text-xs font-bold px-3 py-1 rounded-full">
+              <span className="bg-[#e4f4f9] text-[#00648e] text-xs font-bold px-3 py-1 rounded-full">
                 LEVEL {stats.level}
               </span>
             </div>
@@ -347,7 +347,7 @@ const CommunityDashboard: React.FC = () => {
             </div>
             <div className="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
               {/* Progress Bar with Theme Color */}
-              <div className="bg-[#2596be] h-full transition-all duration-500" style={{ width: `${progressPercentage}%` }}/>
+              <div className="bg-[#00648e] h-full transition-all duration-500" style={{ width: `${progressPercentage}%` }}/>
             </div>
             <p className="text-[10px] text-gray-400 italic">
               Earn {nextLevelThreshold - stats.coins} more coins for your 'Community Guardian' Certificate
@@ -359,11 +359,11 @@ const CommunityDashboard: React.FC = () => {
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <Award className="text-[#2596be]" size={20} />
+              <Award className="text-[#00648e]" size={20} />
               <h3 className="text-lg font-bold">Certifications</h3>
             </div>
             <span className="text-xs text-gray-400">
-              <span className="text-[#2596be] font-semibold">{certifications.filter(c => c.achieved).length}</span>/{certifications.length} Earned
+              <span className="text-[#00648e] font-semibold">{certifications.filter(c => c.achieved).length}</span>/{certifications.length} Earned
             </span>
           </div>
 
@@ -407,7 +407,7 @@ const CommunityDashboard: React.FC = () => {
 
         {/* Action Buttons */}
         <Link href="/my-reports" className="block w-full">
-            <button className="w-full bg-[#2596be] text-white py-4 rounded-xl font-semibold hover:bg-[#1f7ca0] transition-all shadow-sm">
+            <button className="w-full bg-[#00648e] text-white py-4 rounded-xl font-semibold hover:bg-[#1f7ca0] transition-all shadow-sm">
             View My Reports
             </button>
         </Link>
@@ -415,7 +415,7 @@ const CommunityDashboard: React.FC = () => {
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-6">
           <div className="flex items-start gap-4">
             <div className="bg-[#e4f4f9] p-3 rounded-xl">
-              <MapIcon className="text-[#2596be]" size={24} />
+              <MapIcon className="text-[#00648e]" size={24} />
             </div>
             <div>
               <h3 className="text-lg font-bold">Community Map</h3>
@@ -432,14 +432,14 @@ const CommunityDashboard: React.FC = () => {
 
         {/* Impact Stats */}
         <div className="bg-[#e4f4f9] p-6 rounded-2xl border border-[#bee0eb]">
-          <div className="flex items-center gap-2 mb-6 text-[#2596be]">
+          <div className="flex items-center gap-2 mb-6 text-[#00648e]">
             <FileText size={18} />
             <span className="font-semibold text-sm uppercase tracking-wider">Community Impact</span>
           </div>
           
           <div className="grid grid-cols-2 gap-4 text-center">
             <div className="border-r border-[#bee0eb]">
-              <p className="text-3xl font-bold text-[#2596be]">{stats.reportsIssued}</p>
+              <p className="text-3xl font-bold text-[#00648e]">{stats.reportsIssued}</p>
               <p className="text-xs text-gray-600 mt-1">Issues Reported</p>
             </div>
             <div>
@@ -457,7 +457,7 @@ const CommunityDashboard: React.FC = () => {
         </div>
 
         {/* Reward Card */}
-        <div className="bg-gradient-to-r from-[#2596be] to-[#1a6b88] p-4 rounded-xl flex items-center justify-between text-white shadow-sm">
+        <div className="bg-gradient-to-r from-[#00648e] to-[#1a6b88] p-4 rounded-xl flex items-center justify-between text-white shadow-sm">
           <div className="flex items-center gap-3">
             <Trophy className="text-yellow-400" size={24} />
             <div>
