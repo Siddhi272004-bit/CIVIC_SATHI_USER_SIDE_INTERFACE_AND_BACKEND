@@ -81,16 +81,16 @@ export async function POST(req: Request) {
     if (!pythonResponse.ok) {
       console.error(`[PROXY] Python Backend Error: ${pythonResponse.status}`);
       // Fallback in case of server error
-      return NextResponse.json({ department: "General Grievance Cell" });
+      return NextResponse.json({ department: "General Grievance Cell / Public Relations Office" });
     }
 
     const data = await pythonResponse.json();
     console.log(`[PROXY] Received from Python:`, data);
     
-    return NextResponse.json(data);
+    return NextResponse.json(data.department);
 
   } catch (error) {
     console.error('[PROXY] Network Error:', error);
-    return NextResponse.json({ department: "General Grievance Cell" });
+    return NextResponse.json({ department: "General Grievance Cell / Public Relations Office" });
   }
 }
