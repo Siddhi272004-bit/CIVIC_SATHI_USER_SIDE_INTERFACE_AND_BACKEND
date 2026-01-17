@@ -1,5 +1,8 @@
+"use client";
 import React, { useState } from 'react';
-import { Map, FileText, Trophy, Coins, CheckCircle, ChevronRight, Award, Lock } from 'lucide-react';
+// 👇 CHANGED: 'Map' is renamed to 'MapIcon' to avoid conflicts
+import { Map as MapIcon, FileText, Trophy, Coins, CheckCircle, ChevronRight, Award, Lock } from 'lucide-react';
+import Link from 'next/link';
 
 interface UserStats {
   reportsIssued: number;
@@ -12,13 +15,12 @@ interface Certification {
   id: number;
   title: string;
   description: string;
-  threshold: number; // Coins or reports needed
+  threshold: number;
   achieved: boolean;
   iconColor: string;
 }
 
 const CommunityDashboard: React.FC = () => {
-  // Mock State
   const [stats, setStats] = useState<UserStats>({
     reportsIssued: 247,
     reportsResolved: 189,
@@ -26,7 +28,6 @@ const CommunityDashboard: React.FC = () => {
     level: 3
   });
 
-  // Mock Certifications Data
   const certifications: Certification[] = [
     { 
       id: 1, 
@@ -48,7 +49,7 @@ const CommunityDashboard: React.FC = () => {
       id: 3, 
       title: "Community Guardian", 
       description: "Reach Level 5", 
-      threshold: 5, // Target Level
+      threshold: 5,
       achieved: false,
       iconColor: "text-purple-500"
     },
@@ -86,7 +87,6 @@ const CommunityDashboard: React.FC = () => {
             </div>
           </div>
 
-          {/* Reward Progress Bar */}
           <div className="space-y-2">
             <div className="flex justify-between text-xs font-medium">
               <span>Progress to Certification</span>
@@ -101,7 +101,7 @@ const CommunityDashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* --- NEW SECTION: Certifications Tracker --- */}
+        {/* Certifications Tracker */}
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
@@ -148,17 +148,19 @@ const CommunityDashboard: React.FC = () => {
             View All Achievements
           </button>
         </div>
-        {/* ------------------------------------------- */}
 
         {/* Action Buttons */}
-        <button className="w-full bg-[#E8F3F1] text-[#2D5A53] py-4 rounded-xl font-semibold hover:bg-opacity-80 transition-all">
-          View My Reports
-        </button>
+        <Link href="/my-reports" className="block w-full">
+            <button className="w-full bg-[#E8F3F1] text-[#2D5A53] py-4 rounded-xl font-semibold hover:bg-opacity-80 transition-all">
+            View My Reports
+            </button>
+        </Link>
 
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-6">
           <div className="flex items-start gap-4">
             <div className="bg-[#E8F3F1] p-3 rounded-xl">
-              <Map className="text-[#2D5A53]" size={24} />
+              {/* 👇 UPDATED: using MapIcon instead of Map */}
+              <MapIcon className="text-[#2D5A53]" size={24} />
             </div>
             <div>
               <h3 className="text-lg font-bold">Community Map</h3>
@@ -166,9 +168,11 @@ const CommunityDashboard: React.FC = () => {
             </div>
           </div>
           
-          <button className="w-full border border-gray-200 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all">
-            View Map
-          </button>
+          <Link href="/" className="block w-full"> 
+            <button className="w-full border border-gray-200 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all">
+                View Map
+            </button>
+          </Link>
         </div>
 
         {/* Impact Stats */}
